@@ -120,4 +120,38 @@ function truncateText(text, limit) {
   return text.substring(0, shortened);
 }
 
+// Assigning click event listener to cryto button 1, assumed to be bitcoin.
+const crypto1 = "bitcoin";
+const searchLimit = 25;
+
+let crpto1Btn = document.getElementById('crpto1Btn');
+crpto1Btn.addEventListener('click', event => {
+  searchReddit(crypto1, searchLimit, "latest")
+  .then(results => {
+        let output = '<div class="card-columns">';
+        // Loop through posts
+        results.forEach(post => {
+            // Check for image
+            const img = post.preview ? post.preview.images[0].source.url : 
+            'https://cdn.comparitech.com/wp-content/uploads/2017/08/reddit-1.jpg'
+
+            output  += `
+            <div class="col-8 card border-dark mb-3" style="max-width: 30rem;">
+                <img src="${img}" class="card-img-top" alt="Card image cap">
+                <div class="card-body">
+                    <h5 class="card-title">${post.title}</h5>
+                    <p class="card-text">${truncateText(post.selftext, 100)}</p>
+                    <a href="${post.url}" class="btn btn-primary">Read more</a>
+                </div>
+            </div>
+            `;
+        });
+        output += '</div>';
+        document.getElementById('results').innerHTML = output;
+    });
+
+    event.preventDefault();
+});
+
+
 // Ends here.
