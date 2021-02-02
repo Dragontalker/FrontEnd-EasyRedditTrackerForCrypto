@@ -34,7 +34,7 @@ searchForm.addEventListener('submit', event => {
     //Search Reddit
     searchReddit(searchTerm, searchLimit, "latest").then
     (results => {
-        let output = '<div class="card-columns">';
+        let output = '<div class="row">';
         // Loop through posts
         results.forEach(post => {
             // Check for image
@@ -42,11 +42,12 @@ searchForm.addEventListener('submit', event => {
             'https://cdn.comparitech.com/wp-content/uploads/2017/08/reddit-1.jpg'
 
             output  += `
-            <div class="card">
+            <div class="col-8 card border-dark mb-3" style="max-width: 18rem;">
                 <img src="${img}" class="card-img-top" alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">${post.title}</h5>
-                    <p class="card-text">${truncateText(post.selftext, 100)}</a>
+                    <p class="card-text">${truncateText(post.selftext, 100)}</p>
+                    <a href="${post.url}" class="btn btn-primary">Read more</a>
                 </div>
             </div>
             `;
