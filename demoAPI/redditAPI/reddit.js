@@ -3,6 +3,10 @@ import reddit from './reddit-api'
 
 const searchInput = document.getElementById('search-input');
 
+const searchReddit (searchTerm, searchLimit, sortBy) => {
+        fetch(`http://www.reddit.com/search.json?q=${searchTerm}`)
+    };
+
 searchForm.addEventListener('submit', event => {
     // Get search term by toggling on/off
     const searchTerm = searchInput.value;
@@ -20,7 +24,7 @@ searchForm.addEventListener('submit', event => {
     searchInput.value = "";
 
     //Search Reddit
-    reddit.search(searchTerm, searchLimit);
+    
 
     event.preventDefault();
 });
