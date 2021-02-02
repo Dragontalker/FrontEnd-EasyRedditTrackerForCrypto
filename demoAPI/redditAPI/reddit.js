@@ -11,7 +11,23 @@ searchForm.addEventListener('submit', event => {
     //Check input
     if (searchTerm === '') {
         // Show message
-        alert('Please add a search')
+        showMessage('Please add a serach term', 'alert-danger')
     }
     event.preventDefault();
-})
+});
+
+function showMessage(message, className) {
+    // Create div
+    const div = document.createElement('div');
+    // Add classes
+    div.className = `alert ${className}`;
+    // Add text
+    div.appendChild(document.createTextNode(message));
+    // Get parent container
+    const searchContainer = document.getElementById('search-container');
+    // Get search
+    const search = document.getElementById('search');
+
+    // Inseert message
+    searchContainer.insertBefore(div, search);
+}
