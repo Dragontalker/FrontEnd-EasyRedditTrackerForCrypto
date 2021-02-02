@@ -1,10 +1,9 @@
 const searchForm = document.getElementById('search-form');
-import reddit from './reddit-api'
 
 const searchInput = document.getElementById('search-input');
 
 const searchReddit = (searchTerm, searchLimit, sortBy) => {
-    return fetch(`http://www.reddit.com/search.json?q=${searchTerm}&sort=${sortBy}&limit=${searchLimit}`)
+    return fetch(`https://www.reddit.com/search.json?q=${searchTerm}&sort=${sortBy}&limit=${searchLimit}`)
     .then(response => response.json())
     .then(data => data.data.children.map(data => data.data))
     .catch(err => console.log(err));
@@ -27,7 +26,10 @@ searchForm.addEventListener('submit', event => {
     searchInput.value = "";
 
     //Search Reddit
-    
+    searchReddit(searchTerm, searchLimit, "latest").then
+    (result => {
+        console.log(result);
+    })
 
     event.preventDefault();
 });
