@@ -3,9 +3,11 @@ import reddit from './reddit-api'
 
 const searchInput = document.getElementById('search-input');
 
-const searchReddit (searchTerm, searchLimit, sortBy) => {
-        fetch(`http://www.reddit.com/search.json?q=${searchTerm}`)
-    };
+const searchReddit = async (searchTerm, searchLimit, sortBy) => {
+    await fetch(`http://www.reddit.com/search.json?q=${searchTerm}&sort=${sortBy}&limit=${searchLimit}`)
+    .then(response => response.json())
+    .then(data => console.log(data));
+};
 
 searchForm.addEventListener('submit', event => {
     // Get search term by toggling on/off
