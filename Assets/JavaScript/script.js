@@ -100,3 +100,17 @@ function closeModal() {
 $(".loginBtn").on("click", login);
 $(".registerBtn").on("click", newUser);
 $(window).on("load", loadPage);
+
+
+// Scripts for redditResults.html
+// Starts here,
+
+// Fetch function that returns a promise which contains the reddit data we want.
+const searchReddit = (searchTerm, searchLimit, sortBy) => {
+  return fetch(`https://www.reddit.com/search.json?q=${searchTerm}&sort=${sortBy}&limit=${searchLimit}`)
+  .then(response => response.json())
+  .then(data => data.data.children.map(data => data.data))
+  .catch(err => console.log(err));
+};
+
+// Ends here.
