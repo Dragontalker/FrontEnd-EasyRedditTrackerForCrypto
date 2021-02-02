@@ -100,3 +100,13 @@ function closeModal() {
 $(".loginBtn").on("click", login);
 $(".registerBtn").on("click", newUser);
 $(window).on("load", loadPage);
+
+
+function saveChanges(){
+  let username = $(".createUsername").val();
+  let password = $(".createPassword").val();
+  console.log(username, password);
+  clearFIelds();
+  closeModal();
+
+}
