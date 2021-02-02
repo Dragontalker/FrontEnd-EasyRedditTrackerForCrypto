@@ -113,4 +113,11 @@ const searchReddit = (searchTerm, searchLimit, sortBy) => {
   .catch(err => console.log(err));
 };
 
+// Helper function that is used to truncate the self text contained in reddit JSON data.
+function truncateText(text, limit) {
+  const shortened = text.indexOf(" ", limit);
+  if (shortened == -1) return text;
+  return text.substring(0, shortened);
+}
+
 // Ends here.
