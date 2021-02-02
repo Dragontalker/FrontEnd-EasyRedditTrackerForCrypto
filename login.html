@@ -28,7 +28,8 @@
             <p class="text-muted"> Please enter your login and password!</p>
             <input type="text" name="" placeholder="Username" class="username">
             <input type="password" name="" placeholder="Password" class="password">
-            <a class="forgot text-muted" href="#">Forgot password?</a>
+            <a class="forgot text-muted" href="#"  data-bs-toggle="modal"
+            data-bs-target="#ForgatPasswordModal">Forgot password?</a>
             <input type="submit" name="" value="Login" href="#" class="loginBtn">
             <input type="button" name="" value="Register" href="#" data-bs-toggle="modal"
               data-bs-target="#exampleModal">
@@ -66,6 +67,30 @@
       </div>
     </div>
   </div>
+
+   <!-- Forgat-password Modal -->
+   <div class="col-md-6">
+    <div class="modal fade" id="ForgatPasswordModal" tabindex="-1" aria-labelledby="ForgatPasswordModal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">Please enter your username and password!</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <input type="text" name="" placeholder="Username" class="createUsername">
+            <input type="password" name="" placeholder="Password" class="createPassword">
+            <input type="password" name="" placeholder="Re-type Password" class="createPassword">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary registerBtn">Save changes</button>
+          </div>
+        </div>
+      </div>
+    </div>
+   </div>
+
 
   </div>
 </body>
