@@ -1,4 +1,6 @@
 const searchForm = document.getElementById('search-form');
+import reddit from './reddit-api'
+
 const searchInput = document.getElementById('search-input');
 
 searchForm.addEventListener('submit', event => {
@@ -18,6 +20,7 @@ searchForm.addEventListener('submit', event => {
     searchInput.value = "";
 
     //Search Reddit
+    reddit.search(searchTerm, searchLimit);
 
     event.preventDefault();
 });
