@@ -3,10 +3,10 @@ import reddit from './reddit-api'
 
 const searchInput = document.getElementById('search-input');
 
-const searchReddit = async (searchTerm, searchLimit, sortBy) => {
-    await fetch(`http://www.reddit.com/search.json?q=${searchTerm}&sort=${sortBy}&limit=${searchLimit}`)
+const searchReddit = (searchTerm, searchLimit, sortBy) => {
+    return fetch(`http://www.reddit.com/search.json?q=${searchTerm}&sort=${sortBy}&limit=${searchLimit}`)
     .then(response => response.json())
-    .then(data => console.log(data));
+    .then(data => data.data.children.map(data => data.data));
 };
 
 searchForm.addEventListener('submit', event => {
