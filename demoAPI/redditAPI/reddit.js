@@ -13,6 +13,12 @@ searchForm.addEventListener('submit', event => {
         // Show message
         alert('Please add a serach term')
     }
+
+    // Clear input
+    searchInput.value = "";
+
+    //Search Reddit
+
     event.preventDefault();
 });
 
