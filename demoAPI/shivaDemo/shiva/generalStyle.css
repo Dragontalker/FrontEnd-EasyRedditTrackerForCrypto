@@ -168,9 +168,12 @@ a.socialIcon:hover,
     transition: all 0.8s
 }
 
+/* search bar style */
 .padding {
-    padding: 10rem !important
+    padding: 5rem, 10rem, 5rem, 10rem !important;
+    margin-top:20px;
 }
+
 
 .domain-form .form-group {
     border: 1px solid #9ff0c8;
@@ -214,7 +217,6 @@ a.socialIcon:hover,
 .domain-price span small {
     color: #24bdc9
 }
-
 @media screen and (max-width: 992px) {
     .padding {
         padding: 10rem 2rem 5rem 2rem !important
@@ -224,6 +226,7 @@ a.socialIcon:hover,
         padding: 40px;
         top: 20%;
         left: 50%;
+  
     }
     .box input[type="text"]:focus,
     .box input[type="password"]:focus {
@@ -239,36 +242,51 @@ a.socialIcon:hover,
     }
     .modal-content {
         margin: 0px;
-
+    
     }
     .box {
         left: 10%;
-
+  
     }
-
-    /* On screens that are 600px or less, set the background color to olive */
-    @media screen and (max-width: 600px) {
-        .padding {
-            padding: 10rem 0rem 5rem 0rem !important
-        }
-        .box {
-            width: 300px;
-            padding: 40px;
-            top: 20%;
-            left: 8%;
-        }
+  /* On screens that are 600px or less, set the background color to olive */
+  @media screen and (max-width: 600px) {
+    .padding {
+        padding: 10rem 0rem 5rem 0rem !important
     }
+    .box {
+        width: 300px;
+        padding: 40px;
+        top: 20%;
+        left: 8%;
+  
+    }
+    
+    
+  }
+}
+/* Navbar Style */
+
+.bg-light {
+    background: linear-gradient(to right, #91cde4, #012753)
+}
+.navbar-collaps{
+    padding:10px, 0px , 10px, 0px;
+}
+/* card style*/
+
+.ratings i {
+    color: green
 }
 
-/* Styles for redditLogin.html */
-/* Starts herer, */
-footer {
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    background-color: black;
-    color: white;
-    text-align: center;
+.install span {
+    font-size: 12px
 }
-/* Ends here. */
+
+.col-md-4 {
+    margin-top: 27px
+}
+.card {
+    
+    box-shadow: 0 4px 8px 0 rgba(9, 13, 228, 0.2), 0 6px 20px 0 rgba(4, 8, 243, 0.19);
+    
+  }
