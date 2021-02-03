@@ -1,3 +1,5 @@
+let currentUserInputs = []; ///point to the login
+
 async function getDataCrypto() {
   var input = document.querySelector(".form-control").value;
   const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=cad&ids=${input}`;
@@ -13,6 +15,7 @@ async function getDataCrypto() {
   const minVal = result.low_24h;
   const logo = result.image;
 
+  storeInputs(name);
   /////////////append a new div after the previous one
   const node = document.createElement("div");
   document.querySelector(".displayCrypto").appendChild(node);
@@ -32,16 +35,10 @@ async function getDataCrypto() {
   console.log(result, name, maxVal, minVal);
 }
 
-// function parseValues(max, min) {
-//   /// parse values min and max
-//   max += "";
-//   min += "";
-//   if (maxVal.length > 3) {
-//       (string) =>{
-//     for(let i=0;i<string.length;i++){
-//     maxVal.slice();
-//     }
-//     }
-// }
+function storeInputs(input) {
+  currentUserInputs.push(input);
+  localStorage.arr = currentUserInputs;
+  console.log(currentUserInputs);
+}
 
 document.querySelector(".btn").addEventListener("click", getDataCrypto);
