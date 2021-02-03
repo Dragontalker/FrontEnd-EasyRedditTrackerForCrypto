@@ -13,16 +13,35 @@ async function getDataCrypto() {
   const minVal = result.low_24h;
   const logo = result.image;
 
-  //////////////////need to parse values min and max
+  /////////////append a new div after the previous one
+  const node = document.createElement("div");
+  document.querySelector(".displayCrypto").appendChild(node);
+  console.log(node);
+  node.innerHTML = `<div class="cryptoItem"><div class="logo"><img src=${logo}></div>
+                    <p class="name">${name.toUpperCase()}</p>
+                    <p class="values">Max value last 24H: <span id="max">${maxVal}</span> CAD</p>
+                    <p class="values">Min value last 24H: <span id="min">${minVal}</span> CAD</p></div>`;
 
   document.querySelector(".displayCrypto").style = `display: block;`;
 
-  document.querySelector(".logo").innerHTML = `<img src=${logo}>`;
-  document.querySelector(".name").innerHTML = name.toUpperCase();
-  document.querySelector("#max").innerHTML = `${maxVal}`;
-  document.querySelector("#min").innerHTML = `${minVal}`;
+  //   document.querySelector(".logo").innerHTML = `<img src=${logo}>`;
+  //   document.querySelector(".name").innerHTML = name.toUpperCase();
+  //   document.querySelector("#max").innerHTML = `${maxVal}`;
+  //   document.querySelector("#min").innerHTML = `${minVal}`;
 
   console.log(result, name, maxVal, minVal);
 }
+
+// function parseValues(max, min) {
+//   /// parse values min and max
+//   max += "";
+//   min += "";
+//   if (maxVal.length > 3) {
+//       (string) =>{
+//     for(let i=0;i<string.length;i++){
+//     maxVal.slice();
+//     }
+//     }
+// }
 
 document.querySelector(".btn").addEventListener("click", getDataCrypto);
