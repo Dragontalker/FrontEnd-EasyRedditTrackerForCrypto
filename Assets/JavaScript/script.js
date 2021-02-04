@@ -38,8 +38,7 @@ class User {
 
 function loadPage() {
   if (localStorage.users) {
-    users = localStorage.getItem("users");
-    users = JSON.parse(users);
+    users = JSON.parse(localStorage.getItem("users"));
     console.log(users);
   } else localStorage.setItem("users", JSON.stringify(users));
 
@@ -281,10 +280,20 @@ async function getDataCrypto() {
 }
 
 function storeInputs(input) {
+  ///////loop over the array of users and find the correct element
+  for (let i = 0; i < users.length; i++) {
+    if (users[i].userName === onlineNow.userName) {
+      if (users[i].saved.includes(input)) return;
+      users[i].saved.push(input);
+      console.log(users[i]);
+      localStorage.users = JSON.stringify(users);
+    }
+  }
+  console.log(users);
+  // localStorage.setItem("users", users);
   onlineNow = JSON.parse(localStorage.getItem("onlineNow"));
   onlineNow.saved.push(input);
-  console.log(onlineNow);
-  console.log("Hello" + onlineNow.userName);
+  localStorage.setItem("onlineNow", JSON.stringify(onlineNow));
 }
 // alert("test");
 document
