@@ -37,15 +37,16 @@ class User {
 }
 
 function loadPage() {
+  onlineNow = {};
   if (localStorage.users) {
-    users = JSON.parse(localStorage.users);
-  } else localStorage.users = JSON.stringify(users);
+    users = localStorage.getItem("users", JSON.parse(localStorage.users));
+  } else localStorage.setItem("users", JSON.stringify(users));
 }
 ////STORE USER
 function storeUser(name, password) {
   const newOne = new User(name, password);
   users.push(newOne);
-  localStorage.users = JSON.stringify(users);
+  localStorage.setItem("users", JSON.stringify(users));
 }
 ////CREATE NEW USER
 function newUser(e) {
@@ -63,12 +64,12 @@ function newUser(e) {
       clearFIelds();
       closeModal();
     }
-  } else alert("insert a valid input");
+  } else alert("Please insert a valid input");
 }
 //////LOGIN LOGIC
 function login(e) {
   e.preventDefault();
-  // window.location.href = "test.html";
+  window.location.assign("redditResults.html");
   let username = $(".username").val();
   let password = $(".password").val();
   [currentUser] = users.filter(
@@ -81,7 +82,7 @@ function login(e) {
     onlineNow = currentUser;
     localStorage.setItem("onlineNow", JSON.stringify(onlineNow)); /////////////////////////////////////////////////////
     clearFIelds();
-  } else alert("user not found");
+  } else alert("User not found");
 }
 /////////////
 function checkUserName(user) {
@@ -111,6 +112,13 @@ function saveChanges() {
   console.log(username, password);
   clearFIelds();
   closeModal();
+}
+
+////logout function
+function logOut() {
+  onlineNow = {};
+  localStorage.removeItem("onlineNow");
+  //window.location = loginpage
 }
 
 // Scripts for redditResults.html
@@ -264,11 +272,12 @@ async function getDataCrypto() {
 }
 
 function storeInputs(input) {
-  onlineNow = JSON.parse(localStorage.onlineNow);
-
+  onlineNow = JSON.parse(localStorage.getItem("onlineNow"));
   onlineNow.saved.push(input);
   console.log(onlineNow);
-  console.log("Hello" + localstorage.onlineNow.name);
+  console.log("Hello" + onlineNow.userName);
 }
-
-document.querySelector(".btn").addEventListener("click", getDataCrypto);
+// alert("test");
+document
+  .querySelector(".search-domain")
+  .addEventListener("click", getDataCrypto);
