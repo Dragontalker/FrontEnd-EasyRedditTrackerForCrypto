@@ -25,7 +25,8 @@ let users = [
     saved: [],
   },
 ];
-let currentUser;
+//points to the obj
+let onlineNow;
 
 class User {
   constructor(username, password, saved) {
@@ -40,13 +41,13 @@ function loadPage() {
     users = JSON.parse(localStorage.users);
   } else localStorage.users = JSON.stringify(users);
 }
-
+////STORE USER
 function storeUser(name, password) {
   const newOne = new User(name, password);
   users.push(newOne);
   localStorage.users = JSON.stringify(users);
 }
-
+////CREATE NEW USER
 function newUser(e) {
   e.preventDefault();
   const name = $(".createUsername").val();
@@ -64,9 +65,10 @@ function newUser(e) {
     }
   } else alert("insert a valid input");
 }
-
+//////LOGIN LOGIC
 function login(e) {
   e.preventDefault();
+  // window.location.href = "test.html";
   let username = $(".username").val();
   let password = $(".password").val();
   [currentUser] = users.filter(
@@ -76,16 +78,18 @@ function login(e) {
   );
   if (currentUser) {
     console.log(`${currentUser.userName} just logged in`);
+    onlineNow = currentUser;
+    localStorage.setItem("onlineNow", JSON.stringify(onlineNow)); /////////////////////////////////////////////////////
     clearFIelds();
   } else alert("user not found");
 }
-
+/////////////
 function checkUserName(user) {
   const el = (el) => el.userName.toLowerCase() === user.toLowerCase();
   let check = users.some(el);
   return check;
 }
-
+/////clear input fields
 function clearFIelds() {
   $(".username").val("");
   $(".password").val("");
@@ -227,3 +231,44 @@ crypto3Btn.addEventListener("click", (event) => {
 });
 
 // Ends here.
+
+//////script for Crypto currency
+
+async function getDataCrypto() {
+  var input = document.querySelector(".form-control").value;
+  const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=cad&ids=${input}`;
+  const [result] = await fetch(url).then((res) => res.json());
+
+  //   const currencies = await fetch(
+  //     `https://api.coingecko.com/api/v3/simple/supported_vs_currencies`
+  //   ).then((res) => res.json());
+  //   console.log(currencies);
+
+  const name = result.id;
+  const maxVal = result.high_24h;
+  const minVal = result.low_24h;
+  const logo = result.image;
+
+  storeInputs(name);
+  /////////////append a new div after the previous one
+  const node = document.createElement("div");
+  document.querySelector(".displayCrypto").appendChild(node);
+  // console.log(node);
+  node.innerHTML = `<div class="cryptoItem"><div class="logo"><img src=${logo}></div>
+                    <p class="name">${name.toUpperCase()}</p>
+                    <p class="values">Max value last 24H: <span id="max">${maxVal}</span> CAD</p>
+                    <p class="values">Min value last 24H: <span id="min">${minVal}</span> CAD</p></div>`;
+
+  document.querySelector(".displayCrypto").style = `display: block;`;
+  // console.log(result, name, maxVal, minVal);
+}
+
+function storeInputs(input) {
+  onlineNow = JSON.parse(localStorage.onlineNow);
+
+  onlineNow.saved.push(input);
+  console.log(onlineNow);
+  console.log("Hello" + localstorage.onlineNow.name);
+}
+
+document.querySelector(".btn").addEventListener("click", getDataCrypto);

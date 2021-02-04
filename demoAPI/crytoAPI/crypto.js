@@ -1,4 +1,4 @@
-let currentUserInputs = []; ///point to the login
+//onlineNow points to the obj
 
 async function getDataCrypto() {
   var input = document.querySelector(".form-control").value;
@@ -26,19 +26,13 @@ async function getDataCrypto() {
                     <p class="values">Min value last 24H: <span id="min">${minVal}</span> CAD</p></div>`;
 
   document.querySelector(".displayCrypto").style = `display: block;`;
-
-  //   document.querySelector(".logo").innerHTML = `<img src=${logo}>`;
-  //   document.querySelector(".name").innerHTML = name.toUpperCase();
-  //   document.querySelector("#max").innerHTML = `${maxVal}`;
-  //   document.querySelector("#min").innerHTML = `${minVal}`;
-
-  console.log(result, name, maxVal, minVal);
+  // console.log(result, name, maxVal, minVal);
 }
 
 function storeInputs(input) {
-  currentUserInputs.push(input);
-  localStorage.arr = currentUserInputs;
-  console.log(currentUserInputs);
+  onlineNow.saved.push(input);
+  localStorage.onlineNow.saved = onlineNow.saved;
+  console.log(onlineNow);
 }
 
 document.querySelector(".btn").addEventListener("click", getDataCrypto);
