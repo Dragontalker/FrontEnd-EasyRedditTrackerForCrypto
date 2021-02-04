@@ -37,10 +37,17 @@ class User {
 }
 
 function loadPage() {
-  onlineNow = {};
   if (localStorage.users) {
-    users = localStorage.getItem("users", JSON.parse(localStorage.users));
+    users = localStorage.getItem("users");
+    users = JSON.parse(users);
+    console.log(users);
   } else localStorage.setItem("users", JSON.stringify(users));
+
+  if (localStorage.onlineNow) {
+    onlineNow = JSON.parse(localStorage.getItem("onlineNow"));
+    console.log(onlineNow.userName);
+    $("#userName").html(onlineNow.userName);
+  }
 }
 ////STORE USER
 function storeUser(name, password) {
@@ -69,7 +76,6 @@ function newUser(e) {
 //////LOGIN LOGIC
 function login(e) {
   e.preventDefault();
-  window.location.assign("redditResults.html");
   let username = $(".username").val();
   let password = $(".password").val();
   [currentUser] = users.filter(
@@ -80,8 +86,9 @@ function login(e) {
   if (currentUser) {
     console.log(`${currentUser.userName} just logged in`);
     onlineNow = currentUser;
-    localStorage.setItem("onlineNow", JSON.stringify(onlineNow)); /////////////////////////////////////////////////////
+    localStorage.setItem("onlineNow", JSON.stringify(onlineNow));
     clearFIelds();
+    window.location.assign("redditResults.html");
   } else alert("User not found");
 }
 /////////////
@@ -115,12 +122,14 @@ function saveChanges() {
 }
 
 ////logout function
-function logOut() {
+function logOut(e) {
+  e.preventDefault();
   onlineNow = {};
   localStorage.removeItem("onlineNow");
-  //window.location = loginpage
+  window.location.assign("login.html");
 }
 
+$("#logoutBtn").on("click", logOut);
 // Scripts for redditResults.html
 // Starts here,
 
